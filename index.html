@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finora - Business & Finance Management Dashboard">
+    <title>Finora | Business & Finance Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <div class="brand-logo">F</div>
+            <div>
+                <h2>Finora</h2>
+                <span>Finance OS</span>
+            </div>
+        </div>
+
+        <div class="profile-mini">
+            <div class="avatar">AK</div>
+            <div>
+                <strong>Karomatxon</strong>
+                <small>Administrator</small>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <p class="nav-title">MAIN</p>
+
+            <button class="nav-item active" data-section="dashboard">
+                <span>⌂</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-section="finance">
+                <span>💰</span>
+                Personal Finance
+            </button>
+
+            <button class="nav-item" data-section="expenses">
+                <span>💸</span>
+                Expenses
+            </button>
+
+            <button class="nav-item" data-section="banking">
+                <span>🏦</span>
+                Online Banking
+            </button>
+
+            <button class="nav-item" data-section="crypto">
+                <span>₿</span>
+                Crypto Portfolio
+            </button>
+
+            <button class="nav-item" data-section="currency">
+                <span>💱</span>
+                Currency Converter
+            </button>
+
+            <p class="nav-title">BUSINESS</p>
+
+            <button class="nav-item" data-section="investment">
+                <span>📈</span>
+                Investments
+            </button>
+
+            <button class="nav-item" data-section="invoice">
+                <span>🧾</span>
+                Invoice Generator
+            </button>
+
+            <button class="nav-item" data-section="business">
+                <span>🏢</span>
+                Small Business
+            </button>
+
+            <button class="nav-item" data-section="payment">
+                <span>💳</span>
+                Payments
+            </button>
+
+            <button class="nav-item" data-section="sales">
+                <span>📊</span>
+                Sales Analytics
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="author-card">
+                <small>PROJECT AUTHOR</small>
+                <strong>Abduraximova Karomatxon</strong>
+            </div>
+
+            <button class="nav-item" id="themeBtn">
+                <span>◐</span>
+                Dark / Light
+            </button>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- HEADER -->
+        <header class="topbar">
+
+            <button class="mobile-menu" id="mobileMenu">☰</button>
+
+            <div class="search-box">
+                <span>⌕</span>
+                <input type="text" id="globalSearch" placeholder="Search anything...">
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn" id="notificationBtn">
+                    🔔
+                    <i></i>
+                </button>
+
+                <div class="user">
+                    <div class="avatar">AK</div>
+                    <div class="user-info">
+                        <strong>Abduraximova Karomatxon</strong>
+                        <span>Finance Manager</span>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- DASHBOARD -->
+            <section class="page-section active" id="dashboard">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">OVERVIEW</p>
+                        <h1>Good morning, Karomatxon 👋</h1>
+                        <p>Here is your complete financial overview.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="openModal('transactionModal')">
+                        + Add Transaction
+                    </button>
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">💰</div>
+                        <div>
+                            <span>Total Balance</span>
+                            <h2 id="totalBalance">$24,580.00</h2>
+                            <small class="positive">↗ 12.8% this month</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">📈</div>
+                        <div>
+                            <span>Total Income</span>
+                            <h2 id="totalIncome">$8,420.00</h2>
+                            <small class="positive">↗ 8.4% this month</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon red">💸</div>
+                        <div>
+                            <span>Total Expenses</span>
+                            <h2 id="totalExpenses">$3,280.00</h2>
+                            <small class="negative">↗ 4.2% this month</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">💎</div>
+                        <div>
+                            <span>Investments</span>
+                            <h2>$12,840.00</h2>
+                            <small class="positive">↗ 18.2% return</small>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="card chart-card large">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Cash Flow</h3>
+                                <span>Income vs Expenses</span>
+                            </div>
+
+                            <select id="cashflowPeriod">
+                                <option>Last 6 months</option>
+                                <option>Last 12 months</option>
+                            </select>
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="cashflowChart"></canvas>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Expense Breakdown</h3>
+                                <span>This month</span>
+                            </div>
+                        </div>
+
+                        <div class="donut-wrap">
+                            <canvas id="expenseChart"></canvas>
+                            <div class="donut-center">
+                                <strong>$3.2K</strong>
+                                <span>Expenses</span>
+                            </div>
+                        </div>
+
+                        <div class="legend">
+                            <div><i class="dot purple-dot"></i> Housing <strong>35%</strong></div>
+                            <div><i class="dot blue-dot"></i> Food <strong>25%</strong></div>
+                            <div><i class="dot green-dot"></i> Transport <strong>20%</strong></div>
+                            <div><i class="dot orange-dot"></i> Other <strong>20%</strong></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid bottom-grid">
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Recent Transactions</h3>
+                                <span>Your latest financial activity</span>
+                            </div>
+
+                            <button class="text-btn" onclick="showSection('finance')">
+                                View all →
+                            </button>
+                        </div>
+
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Transaction</th>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                </tr>
+                                </thead>
+
+                                <tbody id="recentTransactions"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card goals-card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Financial Goals</h3>
+                                <span>Your progress</span>
+                            </div>
+                            <button class="round-btn">+</button>
+                        </div>
+
+                        <div class="goal">
+                            <div class="goal-top">
+                                <span>Emergency Fund</span>
+                                <strong>78%</strong>
+                            </div>
+                            <div class="progress">
+                                <div style="width:78%"></div>
+                            </div>
+                            <small>$7,800 / $10,000</small>
+                        </div>
+
+                        <div class="goal">
+                            <div class="goal-top">
+                                <span>New Laptop</span>
+                                <strong>62%</strong>
+                            </div>
+                            <div class="progress blue-progress">
+                                <div style="width:62%"></div>
+                            </div>
+                            <small>$1,240 / $2,000</small>
+                        </div>
+
+                        <div class="goal">
+                            <div class="goal-top">
+                                <span>Travel Fund</span>
+                                <strong>45%</strong>
+                            </div>
+                            <div class="progress orange-progress">
+                                <div style="width:45%"></div>
+                            </div>
+                            <small>$900 / $2,000</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PERSONAL FINANCE -->
+            <section class="page-section" id="finance">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">PERSONAL FINANCE</p>
+                        <h1>Money Management</h1>
+                        <p>Track your income, balance and financial activity.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="openModal('transactionModal')">
+                        + Add Transaction
+                    </button>
+                </div>
+
+                <div class="stats-grid three">
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">💰</div>
+                        <div>
+                            <span>Available Balance</span>
+                            <h2>$24,580</h2>
+                            <small>Across all accounts</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">↑</div>
+                        <div>
+                            <span>Monthly Income</span>
+                            <h2>$8,420</h2>
+                            <small class="positive">+8.4%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon red">↓</div>
+                        <div>
+                            <span>Monthly Spending</span>
+                            <h2>$3,280</h2>
+                            <small class="negative">+4.2%</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>All Transactions</h3>
+                            <span>Manage your personal finances</span>
+                        </div>
+
+                        <input class="small-search" id="transactionSearch" placeholder="Search transactions...">
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Transaction</th>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="financeTransactions"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- EXPENSES -->
+            <section class="page-section" id="expenses">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">EXPENSE TRACKER</p>
+                        <h1>Expense Management</h1>
+                        <p>Understand where your money goes.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="openModal('expenseModal')">
+                        + Add Expense
+                    </button>
+                </div>
+
+                <div class="expense-layout">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Spending Categories</h3>
+                                <span>Monthly overview</span>
+                            </div>
+                        </div>
+
+                        <div class="category-list">
+
+                            <div class="category-item">
+                                <div class="category-icon purple">🏠</div>
+                                <div class="category-info">
+                                    <strong>Housing</strong>
+                                    <span>Rent & utilities</span>
+                                </div>
+                                <div class="category-value">
+                                    <strong>$1,150</strong>
+                                    <span>35%</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-icon blue">🍔</div>
+                                <div class="category-info">
+                                    <strong>Food</strong>
+                                    <span>Restaurants & groceries</span>
+                                </div>
+                                <div class="category-value">
+                                    <strong>$820</strong>
+                                    <span>25%</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-icon green">🚗</div>
+                                <div class="category-info">
+                                    <strong>Transport</strong>
+                                    <span>Fuel & taxi</span>
+                                </div>
+                                <div class="category-value">
+                                    <strong>$656</strong>
+                                    <span>20%</span>
+                                </div>
+                            </div>
+
+                            <div class="category-item">
+                                <div class="category-icon orange">🛍️</div>
+                                <div class="category-info">
+                                    <strong>Shopping</strong>
+                                    <span>Personal shopping</span>
+                                </div>
+                                <div class="category-value">
+                                    <strong>$654</strong>
+                                    <span>20%</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card budget-card">
+                        <h3>Monthly Budget</h3>
+                        <p>You've spent 68% of your budget.</p>
+
+                        <div class="budget-circle">
+                            <strong>68%</strong>
+                            <span>used</span>
+                        </div>
+
+                        <div class="budget-info">
+                            <span>Spent <strong>$3,280</strong></span>
+                            <span>Budget <strong>$4,800</strong></span>
+                        </div>
+
+                        <div class="progress">
+                            <div style="width:68%"></div>
+                        </div>
+
+                        <p class="budget-left">$1,520 remaining</p>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- BANKING -->
+            <section class="page-section" id="banking">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">ONLINE BANKING</p>
+                        <h1>My Accounts</h1>
+                        <p>Manage all your bank accounts in one place.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="showToast('Bank account added successfully')">
+                        + Add Account
+                    </button>
+                </div>
+
+                <div class="bank-cards">
+
+                    <div class="bank-card main-bank">
+                        <div class="bank-top">
+                            <span>FINORA BANK</span>
+                            <span>VISA</span>
+                        </div>
+
+                        <div class="chip"></div>
+
+                        <p class="card-number">•••• •••• •••• 4821</p>
+
+                        <div class="bank-bottom">
+                            <div>
+                                <small>Card Holder</small>
+                                <strong>KAROMATXON ABDURAXIMOVA</strong>
+                            </div>
+
+                            <div>
+                                <small>Balance</small>
+                                <strong>$12,840.50</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bank-card secondary-bank">
+                        <div class="bank-top">
+                            <span>SAVINGS</span>
+                            <span>VISA</span>
+                        </div>
+
+                        <div class="chip"></div>
+
+                        <p class="card-number">•••• •••• •••• 9217</p>
+
+                        <div class="bank-bottom">
+                            <div>
+                                <small>Card Holder</small>
+                                <strong>KAROMATXON</strong>
+                            </div>
+
+                            <div>
+                                <small>Balance</small>
+                                <strong>$11,739.50</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Bank Activity</h3>
+                            <span>Latest account activity</span>
+                        </div>
+                    </div>
+
+                    <div class="activity-list">
+
+                        <div class="activity">
+                            <div class="activity-icon green">↓</div>
+                            <div>
+                                <strong>Salary Payment</strong>
+                                <span>Today • Main Account</span>
+                            </div>
+                            <strong class="positive">+$4,200</strong>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-icon red">↑</div>
+                            <div>
+                                <strong>Netflix Subscription</strong>
+                                <span>Yesterday • Main Account</span>
+                            </div>
+                            <strong class="negative">-$15.99</strong>
+                        </div>
+
+                        <div class="activity">
+                            <div class="activity-icon purple">↑</div>
+                            <div>
+                                <strong>Transfer to Savings</strong>
+                                <span>Sep 28 • Main Account</span>
+                            </div>
+                            <strong class="negative">-$500</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CRYPTO -->
+            <section class="page-section" id="crypto">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">CRYPTO PORTFOLIO</p>
+                        <h1>Crypto Assets</h1>
+                        <p>Track your cryptocurrency portfolio.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="showToast('Crypto asset added')">
+                        + Add Asset
+                    </button>
+                </div>
+
+                <div class="stats-grid three">
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">₿</div>
+                        <div>
+                            <span>Portfolio Value</span>
+                            <h2>$8,642.90</h2>
+                            <small class="positive">+14.8%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">↗</div>
+                        <div>
+                            <span>Total Profit</span>
+                            <h2>+$1,124</h2>
+                            <small>Since purchase</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">◉</div>
+                        <div>
+                            <span>Assets</span>
+                            <h2>5</h2>
+                            <small>Different coins</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Your Crypto</h3>
+                            <span>Portfolio allocation</span>
+                        </div>
+                    </div>
+
+                    <div class="crypto-table">
+
+                        <div class="crypto-row header">
+                            <span>Asset</span>
+                            <span>Price</span>
+                            <span>Holdings</span>
+                            <span>Value</span>
+                            <span>24h</span>
+                        </div>
+
+                        <div class="crypto-row">
+                            <span class="crypto-name"><b class="coin btc">₿</b> Bitcoin <small>BTC</small></span>
+                            <span>$67,842</span>
+                            <span>0.052 BTC</span>
+                            <strong>$3,527.78</strong>
+                            <span class="positive">+3.24%</span>
+                        </div>
+
+                        <div class="crypto-row">
+                            <span class="crypto-name"><b class="coin eth">Ξ</b> Ethereum <small>ETH</small></span>
+                            <span>$2,642</span>
+                            <span>1.48 ETH</span>
+                            <strong>$3,910.16</strong>
+                            <span class="positive">+2.18%</span>
+                        </div>
+
+                        <div class="crypto-row">
+                            <span class="crypto-name"><b class="coin sol">S</b> Solana <small>SOL</small></span>
+                            <span>$164.20</span>
+                            <span>5.2 SOL</span>
+                            <strong>$853.84</strong>
+                            <span class="negative">-1.12%</span>
+                        </div>
+
+                        <div class="crypto-row">
+                            <span class="crypto-name"><b class="coin xrp">X</b> XRP <small>XRP</small></span>
+                            <span>$0.52</span>
+                            <span>674 XRP</span>
+                            <strong>$350.48</strong>
+                            <span class="positive">+0.84%</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CURRENCY -->
+            <section class="page-section" id="currency">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">CURRENCY CONVERTER</p>
+                        <h1>Currency Exchange</h1>
+                        <p>Convert currencies quickly and easily.</p>
+                    </div>
+                </div>
+
+                <div class="converter-card">
+
+                    <div class="converter-title">
+                        <span>💱</span>
+                        <div>
+                            <h2>Currency Converter</h2>
+                            <p>Enter an amount and choose currencies.</p>
+                        </div>
+                    </div>
+
+                    <div class="converter-form">
+
+                        <div class="input-group">
+                            <label>Amount</label>
+                            <input type="number" id="convertAmount" value="100">
+                        </div>
+
+                        <div class="input-group">
+                            <label>From</label>
+                            <select id="fromCurrency">
+                                <option value="USD">USD — US Dollar</option>
+                                <option value="EUR">EUR — Euro</option>
+                                <option value="GBP">GBP — British Pound</option>
+                                <option value="UZS">UZS — Uzbek Som</option>
+                                <option value="JPY">JPY — Japanese Yen</option>
+                            </select>
+                        </div>
+
+                        <button class="swap-btn" id="swapCurrency">⇄</button>
+
+                        <div class="input-group">
+                            <label>To</label>
+                            <select id="toCurrency">
+                                <option value="EUR">EUR — Euro</option>
+                                <option value="USD">USD — US Dollar</option>
+                                <option value="GBP">GBP — British Pound</option>
+                                <option value="UZS">UZS — Uzbek Som</option>
+                                <option value="JPY">JPY — Japanese Yen</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="conversion-result">
+                        <span id="conversionText">100 USD ≈ 92.00 EUR</span>
+                        <strong id="conversionResult">92.00 EUR</strong>
+                        <small id="rateText">1 USD = 0.92 EUR</small>
+                    </div>
+
+                    <button class="primary-btn full-btn" id="convertBtn">
+                        Convert Currency
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- INVESTMENTS -->
+            <section class="page-section" id="investment">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">INVESTMENT DASHBOARD</p>
+                        <h1>Investment Portfolio</h1>
+                        <p>Track your investments and performance.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="showToast('Investment added')">
+                        + New Investment
+                    </button>
+                </div>
+
+                <div class="stats-grid three">
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">📈</div>
+                        <div>
+                            <span>Portfolio Value</span>
+                            <h2>$12,840</h2>
+                            <small class="positive">+18.2%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">💵</div>
+                        <div>
+                            <span>Total Invested</span>
+                            <h2>$10,860</h2>
+                            <small>Principal amount</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">💎</div>
+                        <div>
+                            <span>Total Return</span>
+                            <h2>+$1,980</h2>
+                            <small class="positive">18.23% ROI</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card chart-card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Portfolio Performance</h3>
+                            <span>Growth over time</span>
+                        </div>
+
+                        <select>
+                            <option>1 Year</option>
+                            <option>6 Months</option>
+                            <option>1 Month</option>
+                        </select>
+                    </div>
+
+                    <div class="chart-container investment-chart">
+                        <canvas id="investmentChart"></canvas>
+                    </div>
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Assets</h3>
+                            <span>Your investment holdings</span>
+                        </div>
+                    </div>
+
+                    <div class="investment-list">
+
+                        <div class="investment-row">
+                            <div class="investment-symbol">AAPL</div>
+                            <div>
+                                <strong>Apple Inc.</strong>
+                                <span>Technology</span>
+                            </div>
+                            <div>
+                                <small>Shares</small>
+                                <strong>12</strong>
+                            </div>
+                            <div>
+                                <small>Value</small>
+                                <strong>$2,856</strong>
+                            </div>
+                            <div class="positive">+24.6%</div>
+                        </div>
+
+                        <div class="investment-row">
+                            <div class="investment-symbol">MSFT</div>
+                            <div>
+                                <strong>Microsoft</strong>
+                                <span>Technology</span>
+                            </div>
+                            <div>
+                                <small>Shares</small>
+                                <strong>8</strong>
+                            </div>
+                            <div>
+                                <small>Value</small>
+                                <strong>$3,124</strong>
+                            </div>
+                            <div class="positive">+19.8%</div>
+                        </div>
+
+                        <div class="investment-row">
+                            <div class="investment-symbol">TSLA</div>
+                            <div>
+                                <strong>Tesla</strong>
+                                <span>Automotive</span>
+                            </div>
+                            <div>
+                                <small>Shares</small>
+                                <strong>10</strong>
+                            </div>
+                            <div>
+                                <small>Value</small>
+                                <strong>$2,450</strong>
+                            </div>
+                            <div class="negative">-4.2%</div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- INVOICE -->
+            <section class="page-section" id="invoice">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">INVOICE GENERATOR</p>
+                        <h1>Create Invoice</h1>
+                        <p>Generate a professional invoice for your clients.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="printInvoice()">
+                        🖨 Print Invoice
+                    </button>
+                </div>
+
+                <div class="invoice-layout">
+
+                    <div class="card invoice-form">
+
+                        <h3>Invoice Details</h3>
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label>Client Name</label>
+                                <input id="clientName" placeholder="Client name">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Invoice Number</label>
+                                <input id="invoiceNumber" value="INV-2026-001">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Service / Product</label>
+                                <input id="invoiceProduct" placeholder="Web Development">
+                            </div>
+
+                            <div class="input-group">
+                                <label>Amount</label>
+                                <input type="number" id="invoiceAmount" value="1000">
+                            </div>
+
+                        </div>
+
+                        <button class="primary-btn" id="generateInvoice">
+                            Generate Invoice
+                        </button>
+
+                    </div>
+
+
+                    <div class="invoice-preview" id="invoicePreview">
+
+                        <div class="invoice-header">
+                            <div>
+                                <div class="invoice-logo">F</div>
+                                <h2>FINORA</h2>
+                                <span>Business & Finance</span>
+                            </div>
+
+                            <div class="invoice-number">
+                                <span>INVOICE</span>
+                                <strong id="previewInvoiceNumber">INV-2026-001</strong>
+                            </div>
+                        </div>
+
+                        <div class="invoice-meta">
+                            <div>
+                                <span>BILLED TO</span>
+                                <strong id="previewClient">Client Name</strong>
+                            </div>
+
+                            <div>
+                                <span>DATE</span>
+                                <strong id="previewDate"></strong>
+                            </div>
+                        </div>
+
+                        <div class="invoice-items">
+
+                            <div class="invoice-item header">
+                                <span>DESCRIPTION</span>
+                                <span>AMOUNT</span>
+                            </div>
+
+                            <div class="invoice-item">
+                                <span id="previewProduct">Web Development</span>
+                                <strong id="previewAmount">$1,000.00</strong>
+                            </div>
+
+                        </div>
+
+                        <div class="invoice-total">
+                            <span>TOTAL</span>
+                            <strong id="previewTotal">$1,000.00</strong>
+                        </div>
+
+                        <div class="invoice-footer">
+                            Thank you for your business.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- BUSINESS -->
+            <section class="page-section" id="business">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">SMALL BUSINESS</p>
+                        <h1>Business Dashboard</h1>
+                        <p>Manage your business performance.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="showToast('Report exported successfully')">
+                        ↓ Export Report
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">💼</div>
+                        <div>
+                            <span>Revenue</span>
+                            <h2>$48,620</h2>
+                            <small class="positive">+12.4%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">💵</div>
+                        <div>
+                            <span>Net Profit</span>
+                            <h2>$18,240</h2>
+                            <small class="positive">+9.8%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon red">💸</div>
+                        <div>
+                            <span>Expenses</span>
+                            <h2>$30,380</h2>
+                            <small>62.5% of revenue</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">👥</div>
+                        <div>
+                            <span>Customers</span>
+                            <h2>1,248</h2>
+                            <small class="positive">+18.6%</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <div class="card chart-card large">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Business Revenue</h3>
+                                <span>Monthly revenue performance</span>
+                            </div>
+                        </div>
+
+                        <div class="chart-container">
+                            <canvas id="businessChart"></canvas>
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <div>
+                                <h3>Top Products</h3>
+                                <span>This month</span>
+                            </div>
+                        </div>
+
+                        <div class="product-list">
+
+                            <div class="product">
+                                <span class="product-number">01</span>
+                                <div>
+                                    <strong>Web Development</strong>
+                                    <small>124 sales</small>
+                                </div>
+                                <strong>$12.4K</strong>
+                            </div>
+
+                            <div class="product">
+                                <span class="product-number">02</span>
+                                <div>
+                                    <strong>UI/UX Design</strong>
+                                    <small>98 sales</small>
+                                </div>
+                                <strong>$8.7K</strong>
+                            </div>
+
+                            <div class="product">
+                                <span class="product-number">03</span>
+                                <div>
+                                    <strong>Consulting</strong>
+                                    <small>76 sales</small>
+                                </div>
+                                <strong>$6.2K</strong>
+                            </div>
+
+                            <div class="product">
+                                <span class="product-number">04</span>
+                                <div>
+                                    <strong>Maintenance</strong>
+                                    <small>54 sales</small>
+                                </div>
+                                <strong>$4.8K</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PAYMENT -->
+            <section class="page-section" id="payment">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">ONLINE PAYMENT</p>
+                        <h1>Make a Payment</h1>
+                        <p>Secure and simple online payment interface.</p>
+                    </div>
+                </div>
+
+                <div class="payment-layout">
+
+                    <div class="card payment-card">
+
+                        <div class="secure-badge">
+                            🔒 Secure Payment
+                        </div>
+
+                        <h2>Payment Details</h2>
+
+                        <div class="input-group">
+                            <label>Cardholder Name</label>
+                            <input id="payName" placeholder="Karomatxon Abduraximova">
+                        </div>
+
+                        <div class="input-group">
+                            <label>Card Number</label>
+                            <input id="payCard" maxlength="19" placeholder="1234 5678 9012 3456">
+                        </div>
+
+                        <div class="form-grid">
+
+                            <div class="input-group">
+                                <label>Expiry Date</label>
+                                <input placeholder="MM / YY" maxlength="7">
+                            </div>
+
+                            <div class="input-group">
+                                <label>CVV</label>
+                                <input type="password" placeholder="•••" maxlength="3">
+                            </div>
+
+                        </div>
+
+                        <div class="input-group">
+                            <label>Amount</label>
+                            <input type="number" id="paymentAmount" value="250">
+                        </div>
+
+                        <button class="primary-btn full-btn" id="payBtn">
+                            Pay $250.00
+                        </button>
+
+                        <p class="payment-note">
+                            Your payment information is securely processed.
+                        </p>
+
+                    </div>
+
+
+                    <div class="card payment-summary">
+
+                        <h3>Payment Summary</h3>
+
+                        <div class="summary-item">
+                            <span>Subtotal</span>
+                            <strong id="summaryAmount">$250.00</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Processing fee</span>
+                            <strong>$5.00</strong>
+                        </div>
+
+                        <div class="summary-item total">
+                            <span>Total</span>
+                            <strong id="summaryTotal">$255.00</strong>
+                        </div>
+
+                        <div class="secure-message">
+                            <span>✓</span>
+                            <div>
+                                <strong>Safe & Secure</strong>
+                                <p>256-bit SSL encrypted payment.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SALES -->
+            <section class="page-section" id="sales">
+
+                <div class="page-heading">
+                    <div>
+                        <p class="eyebrow">SALES ANALYTICS</p>
+                        <h1>Sales Performance</h1>
+                        <p>Analyze your sales and customer performance.</p>
+                    </div>
+
+                    <button class="primary-btn" onclick="showToast('Sales report downloaded')">
+                        ↓ Download Report
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">📊</div>
+                        <div>
+                            <span>Total Sales</span>
+                            <h2>$84,620</h2>
+                            <small class="positive">+16.8%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon green">🛒</div>
+                        <div>
+                            <span>Orders</span>
+                            <h2>2,486</h2>
+                            <small class="positive">+11.4%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">👤</div>
+                        <div>
+                            <span>Customers</span>
+                            <h2>1,248</h2>
+                            <small class="positive">+18.6%</small>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">💳</div>
+                        <div>
+                            <span>Average Order</span>
+                            <h2>$34.04</h2>
+                            <small class="positive">+5.2%</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card chart-card">
+
+                    <div class="card-header">
+                        <div>
+                            <h3>Sales Overview</h3>
+                            <span>Monthly sales data</span>
+                        </div>
+
+                        <select>
+                            <option>2026</option>
+                            <option>2025</option>
+                        </select>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- TRANSACTION MODAL -->
+<div class="modal-overlay" id="transactionModal">
+
+    <div class="modal">
+
+        <button class="modal-close" onclick="closeModal('transactionModal')">×</button>
+
+        <div class="modal-icon">💰</div>
+
+        <h2>Add Transaction</h2>
+        <p>Add a new income or expense.</p>
+
+        <div class="input-group">
+            <label>Description</label>
+            <input id="transactionDescription" placeholder="Salary, Shopping, Rent...">
+        </div>
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Amount</label>
+                <input type="number" id="transactionAmount" placeholder="500">
+            </div>
+
+            <div class="input-group">
+                <label>Type</label>
+                <select id="transactionType">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="input-group">
+            <label>Category</label>
+            <select id="transactionCategory">
+                <option>Salary</option>
+                <option>Food</option>
+                <option>Shopping</option>
+                <option>Transport</option>
+                <option>Housing</option>
+                <option>Business</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <button class="primary-btn full-btn" id="saveTransaction">
+            Save Transaction
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- EXPENSE MODAL -->
+<div class="modal-overlay" id="expenseModal">
+
+    <div class="modal">
+
+        <button class="modal-close" onclick="closeModal('expenseModal')">×</button>
+
+        <div class="modal-icon red-icon">💸</div>
+
+        <h2>Add Expense</h2>
+        <p>Record a new expense.</p>
+
+        <div class="input-group">
+            <label>Description</label>
+            <input id="expenseDescription" placeholder="Coffee, Taxi, Shopping...">
+        </div>
+
+        <div class="input-group">
+            <label>Amount</label>
+            <input type="number" id="expenseAmount" placeholder="50">
+        </div>
+
+        <div class="input-group">
+            <label>Category</label>
+            <select id="expenseCategory">
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Housing</option>
+                <option>Shopping</option>
+                <option>Entertainment</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <button class="primary-btn full-btn" id="saveExpense">
+            Save Expense
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+    <span class="toast-icon">✓</span>
+    <div>
+        <strong>Success</strong>
+        <p>Action completed successfully.</p>
+    </div>
+</div>
+
+
+<footer class="site-footer">
+    <strong>Finora</strong> — Business & Finance Management System
+    <span>Created by <b>Abduraximova Karomatxon</b></span>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
